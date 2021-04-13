@@ -21,6 +21,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha04")
     implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+
+    // Koin
+    implementation("io.insert-koin:koin-android:3.0.1-beta-2")
 }
 
 android {

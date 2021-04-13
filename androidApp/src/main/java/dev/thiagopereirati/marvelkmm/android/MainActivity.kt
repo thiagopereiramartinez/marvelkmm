@@ -17,6 +17,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import dev.thiagopereirati.marvelkmm.Greeting
 import dev.thiagopereirati.marvelkmm.android.ui.theme.MarvelTheme
+import dev.thiagopereirati.marvelkmm.remote.CharactersService
+import dev.thiagopereirati.marvelkmm.repository.CharactersRepository
+import kotlinx.coroutines.runBlocking
+import org.koin.android.ext.android.get
 
 fun greet(): String {
     return Greeting().greeting()
@@ -25,6 +29,13 @@ fun greet(): String {
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val charactersService: CharactersService = get()
+        val repo = CharactersRepository(charactersService)
+
+        runBlocking {
+            println(repo.getCharacters())
+        }
 
         setContent {
             MarvelTheme {

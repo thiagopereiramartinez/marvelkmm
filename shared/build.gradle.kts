@@ -45,14 +45,34 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+
+                // Koin
+                val koinVersion = "3.0.1-beta-2"
+                implementation("io.insert-koin:koin-core:$koinVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+
+                // Koin
+                val koinVersion = "3.0.1-beta-2"
+                implementation("io.insert-koin:koin-test:$koinVersion")
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                // Retrofit
+                val retrofitVersion = "2.9.0"
+                implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+                implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+                implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
